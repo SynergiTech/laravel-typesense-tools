@@ -1,0 +1,42 @@
+{
+  "name": "synergitech/laravel-typesense-tools",
+  "type": "library",
+  "description": "This library adds tools for Typesense within Laravel",
+  "keywords": [
+    "Laravel",
+    "Typesense",
+    "Scout"
+  ],
+  "homepage": "https://github.com/synergitech/laravel-typesense-tools",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2",
+    "laravel/framework": "^10",
+    "laravel/scout": ">=10.0",
+    "typesense/typesense-php": ">=5.1",
+    "symfony/http-client": "^7.4"
+  },
+  "require-dev": {
+    "larastan/larastan": "^2.0",
+    "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
+    "phpstan/extension-installer": "^1.4",
+    "phpunit/phpunit": "^10.0|^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SynergiTech\\LaravelTypesenseTools\\": "src"
+    }
+  },
+  "scripts": {
+    "test": [
+      "phpunit",
+      "phpstan analyse --memory-limit 1G --level 8 src tests"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true,
+      "php-http/discovery": true
+    }
+  }
+}
