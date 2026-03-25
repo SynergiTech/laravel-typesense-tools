@@ -1,6 +1,6 @@
 <?php
 
-namespace SynergiTech\LaravelTypesenseTools\Commands;
+namespace SynergiTech\LaravelTypesenseTools\Console\Commands;
 
 use Illuminate\Console\Command;
 use Laravel\Scout\EngineManager;
@@ -18,11 +18,11 @@ class CleanupTypesenseCollections extends Command
         /** @var TypesenseEngine $typesense */
         $typesense = app(EngineManager::class)->driver('typesense');
 
-        /** @phpstan-ignore-next-line */
         $collections = $typesense->getCollections();
+
+        /** @var array<array{name:string}> $collectionsResponse */
         $collectionsResponse = $collections->retrieve();
 
-        /** @phpstan-ignore-next-line */
         $collectionNames = collect($collectionsResponse['collections'] ?? $collectionsResponse)
             ->pluck('name')
             ->filter()
@@ -34,9 +34,9 @@ class CleanupTypesenseCollections extends Command
             return Command::SUCCESS;
         }
 
-        /** @phpstan-ignore-next-line */
+        /** @var array{aliases:array<array{collection_name:string}>}|array<array{collection_name:string}> $aliasesResponse */
         $aliasesResponse = $typesense->getAliases()->retrieve();
-        /** @phpstan-ignore-next-line */
+
         $aliasedCollectionNames = collect($aliasesResponse['aliases'] ?? $aliasesResponse)
             ->pluck('collection_name')
             ->filter()

@@ -1,0 +1,10 @@
+<?php
+
+namespace Laravel\Scout\Engines;
+
+/**
+ * @mixin \Typesense\Client
+ */
+class TypesenseEngine
+{
+}

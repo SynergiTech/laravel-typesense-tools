@@ -3,11 +3,6 @@ FROM php:$PHP_VERSION-cli-alpine
 
 RUN apk add git zip unzip autoconf make g++
 
-# apparently newer xdebug needs these now?
-RUN apk add --update linux-headers
-
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
@@ -22,7 +17,9 @@ USER dev
 COPY --chown=dev composer.json ./
 
 ARG LARAVEL=10
-RUN composer require laravel/framework ^$LARAVEL.0
+ARG SCOUT=10
+ARG TYPESENSE=5
+RUN composer require laravel/framework:^$LARAVEL.0 laravel/scout:^$SCOUT.0 typesense/typesense-php:^$TYPESENSE.0
 
 COPY --chown=dev . .
 

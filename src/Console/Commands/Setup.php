@@ -1,6 +1,6 @@
 <?php
 
-namespace SynergiTech\LaravelTypesenseTools\Commands;
+namespace SynergiTech\LaravelTypesenseTools\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -59,7 +59,7 @@ class Setup extends Command
             $this->error('Please ensure the indexableAs method is implemented in ' . $model::class);
             return;
         }
-        /** @phpstan-ignore-next-line */
+
         $index = $typesense->getCollections()->{$model->indexableAs()};
 
         try {
@@ -67,7 +67,7 @@ class Setup extends Command
         } catch (ObjectNotFound) {
             $this->info('Creating collection as did not exist for ' . $model::class);
             $schema = config('scout.typesense.model-settings.' . $model::class . '.collection-schema') ?? [];
-            /** @phpstan-ignore-next-line */
+
             $typesense->getCollections()->create($schema);
         }
     }

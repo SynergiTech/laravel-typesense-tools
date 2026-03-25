@@ -11,16 +11,15 @@
   "license": "MIT",
   "require": {
     "php": "^8.2",
-    "laravel/framework": "^10",
+    "laravel/framework": ">=10.0",
     "laravel/scout": ">=10.0",
-    "typesense/typesense-php": ">=5.1",
-    "symfony/http-client": "^7.4"
+    "typesense/typesense-php": ">=5.1"
   },
   "require-dev": {
-    "larastan/larastan": "^2.0",
-    "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
+    "larastan/larastan": "^2.0|^3.0",
+    "orchestra/testbench": ">=8.0",
     "phpstan/extension-installer": "^1.4",
-    "phpunit/phpunit": "^10.0|^11.0"
+    "phpunit/phpunit": ">=10.0"
   },
   "autoload": {
     "psr-4": {
@@ -33,10 +32,16 @@
       "phpstan analyse --memory-limit 1G --level 8 src tests"
     ]
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SynergiTech\\LaravelTypesenseTools\\LaravelTypesenseToolsServiceProvider"
+      ]
+    }
+  },
   "config": {
     "allow-plugins": {
-      "phpstan/extension-installer": true,
-      "php-http/discovery": true
+      "phpstan/extension-installer": true
     }
   }
 }

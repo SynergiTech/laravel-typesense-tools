@@ -1,6 +1,6 @@
 <?php
 
-namespace SynergiTech\LaravelTypesenseTools\Commands;
+namespace SynergiTech\LaravelTypesenseTools\Console\Commands;
 
 use Illuminate\Console\Command;
 use Laravel\Scout\EngineManager;
@@ -29,7 +29,6 @@ class SwitchAlias extends Command
             }
 
             try {
-                /** @phpstan-ignore-next-line */
                 $typesense->getAliases()->upsert($model->searchableAs(), [
                     'collection_name' => $model->indexableAs(),
                 ]);

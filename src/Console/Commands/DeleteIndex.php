@@ -1,6 +1,6 @@
 <?php
 
-namespace SynergiTech\LaravelTypesenseTools\Commands;
+namespace SynergiTech\LaravelTypesenseTools\Console\Commands;
 
 use Illuminate\Console\Command;
 use Laravel\Scout\EngineManager;
@@ -21,6 +21,9 @@ class DeleteIndex extends Command
         /** @var TypesenseEngine $typesense */
         $typesense = app(EngineManager::class)->driver('typesense');
 
+        /** @var string $suffix */
+        $suffix = $this->argument('suffix');
+
         foreach ($models as $model => $settings) {
             $model = new $model();
 
@@ -30,11 +33,9 @@ class DeleteIndex extends Command
             }
 
             try {
-                /** @phpstan-ignore-next-line */
-                $typesense->getCollections()->{($model->searchableAs() . '_' . $this->argument('suffix'))}->delete();
+                $typesense->getCollections()->{($model->searchableAs() . '_' . $suffix)}->delete();
             } catch (Throwable $e) {
-                /** @phpstan-ignore-next-line */
-                $this->info('Failed to delete collection ' . $model->searchableAs() . '_' . $this->argument('suffix') . ': ' . $e->getMessage());
+                $this->info('Failed to delete collection ' . $model->searchableAs() . '_' . $suffix . ': ' . $e->getMessage());
             }
         }
 

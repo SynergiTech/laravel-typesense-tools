@@ -1,0 +1,7 @@
+<?php
+
+namespace Typesense;
+
+class Client
+{
+}
