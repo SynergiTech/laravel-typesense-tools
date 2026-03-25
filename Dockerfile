@@ -17,7 +17,9 @@ USER dev
 COPY --chown=dev composer.json ./
 
 ARG LARAVEL=10
-RUN composer require laravel/framework ^$LARAVEL.0
+ARG SCOUT=10
+ARG TYPESENSE=5
+RUN composer require laravel/framework:^$LARAVEL.0 laravel/scout:^$SCOUT.0 typesense/typesense-php:^$TYPESENSE.0
 
 COPY --chown=dev . .
 
