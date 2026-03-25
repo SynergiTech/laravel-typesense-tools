@@ -29,7 +29,6 @@ class SwitchAlias extends Command
             }
 
             try {
-                /** @phpstan-ignore-next-line */
                 $typesense->getAliases()->upsert($model->searchableAs(), [
                     'collection_name' => $model->indexableAs(),
                 ]);
