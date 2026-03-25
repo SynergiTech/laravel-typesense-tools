@@ -2,8 +2,10 @@
 
 namespace SynergiTech\LaravelTypesenseTools;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use SynergiTech\LaravelTypesenseTools\Console\Commands;
+use SynergiTech\LaravelTypesenseTools\Macros\TypesenseSearchMacro;
 
 class LaravelTypesenseToolsServiceProvider extends ServiceProvider
 {
@@ -17,5 +19,9 @@ class LaravelTypesenseToolsServiceProvider extends ServiceProvider
                 Commands\CleanupTypesenseCollections::class,
             ]);
         }
+
+        Builder::macro('typesenseSearch', function (?string $searchTerm = null) {
+            return app(TypesenseSearchMacro::class)($this, $searchTerm);
+        });
     }
 }
