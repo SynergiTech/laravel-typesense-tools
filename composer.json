@@ -13,8 +13,7 @@
     "php": "^8.2",
     "laravel/framework": "^10",
     "laravel/scout": ">=10.0",
-    "typesense/typesense-php": ">=5.1",
-    "symfony/http-client": "^7.4"
+    "typesense/typesense-php": ">=5.1"
   },
   "require-dev": {
     "larastan/larastan": "^2.0",
@@ -42,8 +41,7 @@
   },
   "config": {
     "allow-plugins": {
-      "phpstan/extension-installer": true,
-      "php-http/discovery": true
+      "phpstan/extension-installer": true
     }
   }
 }
