@@ -1,6 +1,6 @@
 <?php
 
-namespace SynergiTech\LaravelTypesenseTools\Commands;
+namespace SynergiTech\LaravelTypesenseTools\Console\Commands;
 
 use Illuminate\Console\Command;
 use Laravel\Scout\EngineManager;

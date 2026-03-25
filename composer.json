@@ -33,6 +33,13 @@
       "phpstan analyse --memory-limit 1G --level 8 src tests"
     ]
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SynergiTech\\LaravelTypesenseTools\\LaravelTypesenseToolsServiceProvider"
+      ]
+    }
+  },
   "config": {
     "allow-plugins": {
       "phpstan/extension-installer": true,
