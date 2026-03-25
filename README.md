@@ -32,6 +32,21 @@ Our environments typically have separated application/frontend and worker contex
 5. deploy the new code to the frontend so the new fields are in use
 6. (optional) run `php artisan search:cleanup` to remove the now unused collections and get some memory back
 
+### Development
+
+As the frontend is powered by Aliases, you can save yourself a little bit of effort by adding the following to the bottom of your DatabaseSeeder class.
+
+```php
+\Illuminate\Support\Facades\Artisan::call(
+    command: 'search:switch-alias',
+    outputBuffer: $this->command->getOutput()->getOutput(),
+);
+```
+
+This means that every time you or a colleague are starting from scratch, the Aliases will be created. Scout will automatically create the Collections as part of the new data being added.
+
+If you aren't implicitly creating every Collection during your seeding process, you can swap in `search:setup` instead and that will make sure all the Collections exist and the Aliases are created.
+
 ## Command reference
 
 - `search:setup` to ensure collections exist and (optionally) import data.
