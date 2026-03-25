@@ -8,9 +8,15 @@ class User
 {
     use Searchable;
 
+    public static function searchableAs(): string
+    {
+        return 'users';
+    }
+
     public static function indexableAs(): string
     {
-        return 'users_' . env('TYPESENSE_VERSION_SUFFIX', 'default');
+        // @phpstan-ignore larastan.noEnvCallsOutsideOfConfig
+        return self::searchableAs() . '_' . env('TYPESENSE_VERSION_SUFFIX', 'default');
     }
 
     public static function getCollectionSchema(): array
