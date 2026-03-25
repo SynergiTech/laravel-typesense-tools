@@ -3,10 +3,7 @@
 namespace SynergiTech\LaravelTypesenseTools;
 
 use Illuminate\Support\ServiceProvider;
-use SynergiTech\LaravelTypesenseTools\Console\Commands\CleanupTypesenseCollections;
-use SynergiTech\LaravelTypesenseTools\Console\Commands\DeleteIndex;
-use SynergiTech\LaravelTypesenseTools\Console\Commands\Setup;
-use SynergiTech\LaravelTypesenseTools\Console\Commands\SwitchAlias;
+use SynergiTech\LaravelTypesenseTools\Console\Commands;
 
 class LaravelTypesenseToolsServiceProvider extends ServiceProvider
 {
@@ -14,10 +11,10 @@ class LaravelTypesenseToolsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Setup::class,
-                SwitchAlias::class,
-                DeleteIndex::class,
-                CleanupTypesenseCollections::class,
+                Commands\Setup::class,
+                Commands\SwitchAlias::class,
+                Commands\DeleteIndex::class,
+                Commands\CleanupTypesenseCollections::class,
             ]);
         }
     }
