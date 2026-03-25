@@ -1,13 +1,6 @@
 # Laravel Typesense Tools
 
-`synergitech/laravel-typesense-tools` adds Artisan commands that help manage Typesense collections and aliases in Laravel applications using Scout.
-
-## What this package provides
-
-- `search:setup` to ensure collections exist and (optionally) import data.
-- `search:switch-alias` to point aliases at the current index collections.
-- `search:delete-index {suffix}` to remove old suffixed collections.
-- `search:cleanup` to remove collections that are not referenced by an alias.
+This package adds Artisan commands that help manage Typesense collections and aliases in Laravel applications using Scout.
 
 ## Requirements
 
@@ -22,33 +15,39 @@
 composer require synergitech/laravel-typesense-tools
 ```
 
+## What this package provides
+
+- `search:setup` to ensure collections exist and (optionally) import data.
+- `search:switch-alias` to point aliases at the current index collections.
+- `search:delete-index {suffix}` to remove old suffixed collections.
+- `search:cleanup` to remove collections that are not referenced by an alias.
+
 ## Configuration expectations
 
 This package reads model configuration from:
 
 - `config('scout.typesense.model-settings')`
 
-For each configured model, this package expects:
+For each configured model, define settings like:
 
-- `indexableAs()` (used for collection names)
-- `searchableAs()` (used for alias names and deletion targets)
+- `name` (typically `Model::indexableAs()`)
+- `collection-schema` (Typically `User::getCollectionSchema()`)
+- `search-parameters.query_by` (comma-separated searchable fields)
 
-When creating missing collections, `search:setup` uses the model schema from:
-
-- `scout.typesense.model-settings.<ModelClass>.collection-schema`
+See the full examples in [`examples/models/User.php`](examples/models/User.php) and [`examples/config/scout.php`](examples/config/scout.php).
 
 Example `config/scout.php` shape:
 
 ```php
+use App\Models\User;
+
 'typesense' => [
     'model-settings' => [
-        App\\Models\\Post::class => [
-            'collection-schema' => [
-                'name' => 'posts_tmp_20260325',
-                'fields' => [
-                    ['name' => 'id', 'type' => 'string'],
-                    ['name' => 'title', 'type' => 'string'],
-                ],
+        User::class => [
+            'name' => User::indexableAs(),
+            'collection-schema' => User::getCollectionSchema(),
+            'search-parameters' => [
+                'query_by' => implode(',', User::typesenseQueryBy()),
             ],
         ],
     ],
