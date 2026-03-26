@@ -3,7 +3,7 @@
 use App\Models\User;
 
 return [
-//    ... Other Scout config goes here
+    //    ... Other Scout config goes here
 
     'typesense' => [
         'model-settings' => [
