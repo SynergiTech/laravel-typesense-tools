@@ -17,6 +17,7 @@ class CommandRegistrationTest extends TestCase
         $this->assertArrayHasKey('search:delete-index', $commands);
         $this->assertArrayHasKey('search:cleanup', $commands);
     }
+
     /**
      * @return array<int, class-string>
      */

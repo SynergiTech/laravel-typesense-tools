@@ -22,6 +22,7 @@ class TypesenseSearchMacroTest extends TestCase
         $this->assertSame($builder, $macro->call($builder));
         $this->assertSame($builder, $macro->call($builder, ''));
     }
+
     /**
      * @return array<int, class-string>
      */
