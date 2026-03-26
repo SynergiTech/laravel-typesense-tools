@@ -19,7 +19,8 @@
     "larastan/larastan": "^2.0|^3.0",
     "orchestra/testbench": ">=8.0",
     "phpstan/extension-installer": "^1.4",
-    "phpunit/phpunit": ">=10.0"
+    "phpunit/phpunit": ">=10.0",
+    "synergitech/laravel-coding-standards": "^1.1"
   },
   "autoload": {
     "psr-4": {
@@ -28,6 +29,7 @@
   },
   "scripts": {
     "test": [
+      "pint --test",
       "phpunit",
       "phpstan analyse --memory-limit 1G --level 8 src tests"
     ]
