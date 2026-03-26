@@ -50,6 +50,6 @@ class DeleteIndex extends Command
             $collections[$collectionName]->delete();
         }
 
-        return Command::FAILURE;
+        return Command::SUCCESS;
     }
 }
