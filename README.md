@@ -51,7 +51,7 @@ If you aren't implicitly creating every Collection during your seeding process, 
 
 - `search:setup` to ensure collections exist and (optionally) import data.
 - `search:switch-alias` to point aliases at the current index collections.
-- `search:delete-index {suffix}` to remove old suffixed collections.
+- `search:delete-suffix {suffix}` to remove old suffixed collections.
 - `search:cleanup` to remove collections that are not referenced by an alias.
 
 ### `search:setup`
@@ -78,7 +78,7 @@ Upserts each model's alias (`searchableAs`) to target the active collection (`in
 php artisan search:switch-alias
 ```
 
-### `search:delete-index {suffix}`
+### `search:delete-suffix {suffix}`
 
 Deletes old collections named as:
 
@@ -87,7 +87,7 @@ Deletes old collections named as:
 Example:
 
 ```bash
-php artisan search:delete-index 20260325
+php artisan search:delete-suffix 20260325
 ```
 
 ### `search:cleanup`

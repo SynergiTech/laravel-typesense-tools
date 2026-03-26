@@ -14,7 +14,7 @@ class CommandRegistrationTest extends TestCase
 
         $this->assertArrayHasKey('search:setup', $commands);
         $this->assertArrayHasKey('search:switch-alias', $commands);
-        $this->assertArrayHasKey('search:delete-index', $commands);
+        $this->assertArrayHasKey('search:delete-suffix', $commands);
         $this->assertArrayHasKey('search:cleanup', $commands);
     }
 
