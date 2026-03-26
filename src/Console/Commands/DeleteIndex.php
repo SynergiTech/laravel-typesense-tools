@@ -9,7 +9,7 @@ use RuntimeException;
 
 class DeleteIndex extends Command
 {
-    protected $signature = 'search:delete-index {suffix}';
+    protected $signature = 'search:delete-suffix {suffix}';
 
     protected $description = 'Delete previous search index collection';
 
