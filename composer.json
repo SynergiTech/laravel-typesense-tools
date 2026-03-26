@@ -29,7 +29,7 @@
   },
   "scripts": {
     "test": [
-      "pint --test",
+      "/bin/sh /package/vendor/synergitech/laravel-coding-standards/pint --test",
       "phpunit",
       "phpstan analyse --memory-limit 1G --level 8 src tests"
     ]

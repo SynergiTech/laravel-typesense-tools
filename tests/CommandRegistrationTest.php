@@ -8,16 +8,6 @@ use SynergiTech\LaravelTypesenseTools\LaravelTypesenseToolsServiceProvider;
 
 class CommandRegistrationTest extends TestCase
 {
-    /**
-     * @return array<int, class-string>
-     */
-    protected function getPackageProviders($app): array
-    {
-        return [
-            LaravelTypesenseToolsServiceProvider::class,
-        ];
-    }
-
     public function testPackageCommandsAreRegistered(): void
     {
         $commands = Artisan::all();
@@ -26,5 +16,14 @@ class CommandRegistrationTest extends TestCase
         $this->assertArrayHasKey('search:switch-alias', $commands);
         $this->assertArrayHasKey('search:delete-index', $commands);
         $this->assertArrayHasKey('search:cleanup', $commands);
+    }
+    /**
+     * @return array<int, class-string>
+     */
+    protected function getPackageProviders($app): array
+    {
+        return [
+            LaravelTypesenseToolsServiceProvider::class,
+        ];
     }
 }

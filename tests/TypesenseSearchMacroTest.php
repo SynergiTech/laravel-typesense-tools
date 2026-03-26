@@ -9,16 +9,6 @@ use SynergiTech\LaravelTypesenseTools\LaravelTypesenseToolsServiceProvider;
 
 class TypesenseSearchMacroTest extends TestCase
 {
-    /**
-     * @return array<int, class-string>
-     */
-    protected function getPackageProviders($app): array
-    {
-        return [
-            LaravelTypesenseToolsServiceProvider::class,
-        ];
-    }
-
     public function testTypesenseSearchMacroIsRegisteredOnBuilder(): void
     {
         $this->assertTrue(Builder::hasGlobalMacro('typesenseSearch'));
@@ -31,5 +21,14 @@ class TypesenseSearchMacroTest extends TestCase
 
         $this->assertSame($builder, $macro->call($builder));
         $this->assertSame($builder, $macro->call($builder, ''));
+    }
+    /**
+     * @return array<int, class-string>
+     */
+    protected function getPackageProviders($app): array
+    {
+        return [
+            LaravelTypesenseToolsServiceProvider::class,
+        ];
     }
 }

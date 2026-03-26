@@ -20,8 +20,6 @@ class LaravelTypesenseToolsServiceProvider extends ServiceProvider
             ]);
         }
 
-        Builder::macro('typesenseSearch', function (?string $searchTerm = null) {
-            return app(TypesenseSearchMacro::class)($this, $searchTerm);
-        });
+        Builder::macro('typesenseSearch', fn (?string $searchTerm = null) => app(TypesenseSearchMacro::class)($this, $searchTerm));
     }
 }
