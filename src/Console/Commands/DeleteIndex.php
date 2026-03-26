@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Laravel\Scout\EngineManager;
 use Laravel\Scout\Engines\TypesenseEngine;
 use RuntimeException;
+use Typesense\Exceptions\ObjectNotFound;
 
 class DeleteIndex extends Command
 {
@@ -47,7 +48,12 @@ class DeleteIndex extends Command
                 throw new RuntimeException('Cannot delete collection ' . $collectionName . ' because it is currently targeted by an alias.');
             }
 
-            $collections[$collectionName]->delete();
+            try {
+                $collections[$collectionName]->delete();
+                $this->info("Collection {$collectionName} deleted");
+            } catch (ObjectNotFound) {
+                $this->line("No collection called {$collectionName} exists");
+            }
         }
 
         return Command::SUCCESS;
