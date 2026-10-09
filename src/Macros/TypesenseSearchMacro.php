@@ -10,9 +10,10 @@ class TypesenseSearchMacro
     /**
      * @template TModel of Model
      * @param Builder<TModel> $builder
+     * @param array<string,mixed> $baseOptions
      * @return Builder<TModel>
      */
-    public function __invoke(Builder $builder, ?string $searchTerm = null): Builder
+    public function __invoke(Builder $builder, ?string $searchTerm = null, array $baseOptions = []): Builder
     {
         if (! $searchTerm) {
             return $builder;
@@ -28,10 +29,10 @@ class TypesenseSearchMacro
         $infix = config('scout.typesense.model-settings.' . $model::class . '.search-parameters.infix');
 
         do {
-            $options = [
+            $options = array_merge($baseOptions, [
                 'page' => $page,
                 'per_page' => 250,
-            ];
+            ]);
 
             if ($infix !== null) {
                 $options['infix'] = $infix;
