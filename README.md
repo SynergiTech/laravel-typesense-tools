@@ -97,3 +97,24 @@ Finds and optionally deletes collections not currently referenced by any alias.
 ```bash
 php artisan search:cleanup
 ```
+
+## Macro
+
+This package also provides an Eloquent Builder Macro to allow you to filter your database results using the Typesense indexes from the backend easily. For example, this can allow you to avoid performing awkward `LIKE` queries.
+
+```php
+$results = YourModel::query()->typesenseSearch($searchTerm)->paginate();
+```
+
+If you need to specify more options for your query, that is possible too. It is possible for the combined SQL query to return unexpected or incomplete results so converting your specific query elements into Typesense may well be useful.
+
+```php
+$options = [
+    'query_by' => 'postcode,postcode_compact',
+    'filter_by' => 'status:["Open"]',
+];
+
+$results = YourModel::query()->typesenseSearch($searchTerm, $options)->paginate();
+```
+
+Bear in mind that in order to sensibly map the Typesense results into your database, the macro limits the return to 2000 results to avoid writing a very long SQL query.
